@@ -3,233 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis XV Años</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Mis XV Años - Invitación Real</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --rojo-granada: #4a0e0e; /* Tono oscuro de la imagen */
-            --dorado-suave: #d4af37; /* Color oro de los bordes */
-            --crema: #fdf5e6; /* Color del texto y detalles claros */
-            --overlay: rgba(0, 0, 0, 0.4);
+            --marron-profundo: #3a0a0a;
+            --dorado-brillante: #d4af37;
+            --dorado-suave: #c5a059;
+            --texto-crema: #f4e4c1;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border-glass: rgba(255, 255, 255, 0.1);
         }
 
-        body {
+        body, html {
             margin: 0;
             padding: 0;
+            height: 100%;
             font-family: 'Montserrat', sans-serif;
-            /* Fondo de mármol rojizo oscuro similar a la imagen */
-            background: url('https://images.unsplash.com/photo-1604076913837-52ab5629fba9?q=80&w=1887&auto=format&fit=crop') no-repeat center center fixed;
-            background-size: cover;
-            color: var(--crema);
+            background-color: var(--marron-profundo);
+            /* Fondo de mármol oscuro con textura */
+            background-image: url('https://www.transparenttextures.com/patterns/black-mamba.png'), 
+                              radial-gradient(circle, #5e1111 0%, #2a0505 100%);
+            background-attachment: fixed;
+            color: var(--texto-crema);
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Contenedor efecto teléfono de la imagen */
+        .phone-frame {
+            max-width: 420px;
+            width: 95%;
+            margin: 20px auto;
+            background: linear-gradient(145deg, #440c0c, #2a0505);
+            border: 8px solid #1a1a1a;
+            border-radius: 40px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+            position: relative;
+            overflow-y: auto;
+            scrollbar-width: none; /* Ocultar scroll en Firefox */
+        }
+
+        .phone-frame::-webkit-scrollbar { display: none; } /* Ocultar scroll en Chrome */
+
+        .content {
+            padding: 40px 25px;
             text-align: center;
         }
 
-        /* Capa para oscurecer el fondo y que el contenido resalte */
-        .main-overlay {
-            background-color: var(--overlay);
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-
-        .container {
-            max-width: 450px;
-            margin: auto;
-            position: relative;
-        }
-
-        .header-section h1 {
+        /* Encabezado igual a la imagen */
+        .header h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            color: var(--crema);
+            font-size: 3.8rem;
+            color: var(--dorado-suave);
             margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
         }
 
-        .header-section h2 {
+        .header h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
+            font-size: 1.4rem;
+            text-transform: none;
+            letter-spacing: 1px;
+            margin: 10px 0;
         }
 
         .phrase {
+            font-size: 0.75rem;
             font-style: italic;
-            font-size: 0.8rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
+            opacity: 0.8;
+            max-width: 80%;
+            margin: 0 auto 30px;
+            line-height: 1.4;
         }
 
-        /* Contenedor de video con bordes dorados redondeados */
-        .video-box {
-            border: 2px solid var(--dorado-suave);
-            border-radius: 25px;
-            overflow: hidden;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        /* Recuadro de video con marco dorado doble */
+        .video-wrapper {
+            border: 3px solid var(--dorado-suave);
+            padding: 5px;
+            border-radius: 20px;
+            margin-bottom: 35px;
+            background: rgba(0,0,0,0.3);
+            position: relative;
         }
 
-        /* Títulos de sección estilo "Gran Día" */
+        .video-wrapper iframe {
+            border-radius: 15px;
+            display: block;
+        }
+
+        /* Títulos con líneas laterales */
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            margin: 40px 0 20px;
+            color: var(--dorado-suave);
+            margin: 30px 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
 
-        /* Estilo de los cuadros del contador */
-        .countdown {
+        /* Contador con cajas estilizadas */
+        .countdown-container {
             display: flex;
-            justify-content: center;
-            gap: 10px;
+            justify-content: space-between;
             margin-bottom: 40px;
         }
 
-        .time-box {
-            border: 1px solid var(--dorado-suave);
+        .count-box {
+            background: var(--glass);
+            border: 1.5px solid var(--dorado-suave);
             border-radius: 15px;
-            padding: 10px;
-            min-width: 65px;
-            background: rgba(0, 0, 0, 0.2);
+            width: 75px;
+            padding: 12px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
-        .time-box span {
+        .count-box span {
             display: block;
             font-size: 1.8rem;
-            font-weight: bold;
             font-family: 'Playfair Display', serif;
+            font-weight: bold;
+            color: var(--texto-crema);
         }
 
-        .time-box small {
-            font-size: 0.7rem;
+        .count-box small {
+            font-size: 0.65rem;
             text-transform: uppercase;
+            color: var(--dorado-suave);
         }
 
-        /* Botones de ubicación divididos (Fila) */
-        .location-row {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
+        /* Botones de ubicación iguales a la imagen */
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
             margin-bottom: 15px;
         }
 
-        .btn-small {
-            flex: 1;
+        .btn-loc {
+            background: var(--glass);
             border: 1px solid var(--dorado-suave);
-            border-radius: 20px;
-            padding: 10px;
+            padding: 12px 5px;
+            border-radius: 15px;
+            color: var(--texto-crema);
             text-decoration: none;
-            color: var(--crema);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 5px;
-        }
-
-        .btn-parking {
-            display: block;
-            text-decoration: none;
-            color: var(--crema);
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-        }
-
-        /* Botón de Asistencia Grande */
-        .btn-rsvp {
-            display: block;
-            border: 2px solid var(--dorado-suave);
-            border-radius: 40px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--crema);
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-top: 20px;
             transition: 0.3s;
         }
 
-        .btn-rsvp:hover {
+        .btn-parking {
+            text-decoration: none;
+            color: var(--dorado-suave);
+            font-size: 0.8rem;
+            display: inline-block;
+            margin: 10px 0 30px;
+        }
+
+        /* Botón de asistencia - El más importante */
+        .btn-main-rsvp {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--dorado-suave);
+            border-radius: 50px;
+            padding: 18px;
+            color: var(--texto-crema);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: block;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            transition: 0.4s;
+            margin-top: 10px;
+        }
+
+        .btn-main-rsvp:hover {
             background: var(--dorado-suave);
-            color: var(--rojo-granada);
+            color: var(--marron-profundo);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
         }
 
         footer {
             margin-top: 50px;
             font-size: 0.7rem;
-            opacity: 0.7;
+            opacity: 0.6;
+            line-height: 1.5;
+        }
+
+        /* Animación suave al cargar */
+        .phone-frame {
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-<div class="main-overlay">
-    <div class="container">
-        
-        <div class="header-section">
-            <h1>Mis XV Años</h1>
-            <h2>[Nombre de la Quinceañera]</h2>
-            <p class="phrase">"Una noche mágica que comienza contigo"</p>
+    <div class="phone-frame">
+        <div class="content">
+            
+            <div class="header">
+                <h1>Mis XV Años</h1>
+                <h2>[Nombre de la Quinceañera]</h2>
+                <p class="phrase">“Porque este sueño que hoy comienza no estaría completo sin tu presencia”</p>
+            </div>
+
+            <div class="video-wrapper">
+                <iframe width="100%" height="220" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+
+            <div class="section-title">¡Gran Día!</div>
+
+            <div class="countdown-container">
+                <div class="count-box"><span id="days">09</span><small>Días</small></div>
+                <div class="count-box"><span id="hours">15</span><small>Horas</small></div>
+                <div class="count-box"><span id="minutes">42</span><small>Minutos</small></div>
+                <div class="count-box"><span id="seconds">37</span><small>Segundos</small></div>
+            </div>
+
+            <div class="section-title">Donde y Cuando</div>
+            
+            <div class="location-grid">
+                <a href="#" class="btn-loc">📍 Iglesia [Nombre]</a>
+                <a href="#" class="btn-loc">🏠 Salón [Nombre]</a>
+            </div>
+            
+            <a href="#" class="btn-parking">🚗 Ver Estacionamiento Cercano</a>
+
+            <div class="section-title">Asistencia</div>
+            
+            <a href="TU_LINK_AQUI" class="btn-main-rsvp">
+                ✉️ Confirmar Asistencia Aquí
+            </a>
+
+            <footer>
+                Diseñado con ❤️ para mi familia<br>
+                y esperando celebrar contigo este día inolvidable.
+            </footer>
         </div>
-
-        <div class="video-box">
-            <iframe width="100%" height="250" src="https://www.youtube.com/embed/AQUÍ_TU_ID" frameborder="0" allowfullscreen></iframe>
-        </div>
-
-        <p class="section-title">¡Gran Día!</p>
-        
-        <div class="countdown">
-            <div class="time-box"><span id="days">00</span><small>Días</small></div>
-            <div class="time-box"><span id="hours">00</span><small>Horas</small></div>
-            <div class="time-box"><span id="minutes">00</span><small>Mins</small></div>
-            <div class="time-box"><span id="seconds">00</span><small>Segs</small></div>
-        </div>
-
-        <p class="section-title">¿Dónde y Cuándo?</p>
-        
-        <div class="location-row">
-            <a href="#" class="btn-small">📍 Iglesia [Nombre]</a>
-            <a href="#" class="btn-small">🏠 Salón [Nombre]</a>
-        </div>
-        
-        <a href="#" class="btn-parking">🚗 Ver Estacionamiento Cercano</a>
-
-        <p class="section-title">Asistencia</p>
-        <a href="TU_LINK_DE_FORMULARIO" class="btn-rsvp">
-            ✉️ Confirmar Asistencia Aquí
-        </a>
-
-        <footer>
-            Diseñado con ❤️ para un día inolvidable.
-        </footer>
     </div>
-</div>
 
-<script>
-    // CONFIGURA TU FECHA AQUÍ
-    const eventDate = new Date("Dec 31, 2026 20:00:00").getTime();
+    <script>
+        // Cambia la fecha aquí para que el contador funcione
+        const countDate = new Date("Dec 31, 2026 21:00:00").getTime();
 
-    const timer = setInterval(function() {
-        const now = new Date().getTime();
-        const diff = eventDate - now;
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const gap = countDate - now;
 
-        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((diff % (1000 * 60)) / 1000);
+            const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
 
-        document.getElementById("days").innerHTML = d;
-        document.getElementById("hours").innerHTML = h;
-        document.getElementById("minutes").innerHTML = m;
-        document.getElementById("seconds").innerHTML = s;
+            const d = Math.floor(gap / day);
+            const h = Math.floor((gap % day) / hour);
+            const m = Math.floor((gap % hour) / minute);
+            const s = Math.floor((gap % minute) / second);
 
-        if (diff < 0) {
-            clearInterval(timer);
-            document.querySelector(".countdown").innerHTML = "¡HOY ES EL GRAN DÍA!";
+            document.getElementById("days").innerText = d < 10 ? "0"+d : d;
+            document.getElementById("hours").innerText = h < 10 ? "0"+h : h;
+            document.getElementById("minutes").innerText = m < 10 ? "0"+m : m;
+            document.getElementById("seconds").innerText = s < 10 ? "0"+s : s;
         }
-    }, 1000);
-</script>
 
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 </body>
 </html>
