@@ -2,298 +2,270 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis XV Años - Frida Giselle</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mis XV - Frida Giselle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --rojo-granada: #8b1010;
+            --rojo: #8b1010;
             --dorado: #d4af37;
             --blanco: #ffffff;
-            --texto-oscuro: #333333;
-            --sombra: 0 10px 30px rgba(0,0,0,0.15);
+            --texto-oscuro: #333;
+        }
+
+        * {
+            box-sizing: border-box; /* Evita que los elementos sobresalgan por el padding */
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: #fcfcfc;
+            background-color: #f9f9f9;
             color: var(--texto-oscuro);
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prohibido el scroll horizontal */
         }
 
-        /* ANIMACIÓN DE APARICIÓN AL SCROLL */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+        /* Contenedor Global para centrar y limitar ancho */
+        .main-wrapper {
+            max-width: 500px; /* Ancho ideal para celulares */
+            margin: 0 auto;
+            background: var(--blanco);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* SECCIONES */
         section {
-            padding: 60px 0;
+            padding: 40px 15px;
             text-align: center;
-            position: relative;
+            width: 100%;
         }
 
         .bg-white { background-color: var(--blanco); }
-        .bg-red { 
-            background-color: var(--rojo-granada); 
-            color: var(--blanco);
-            box-shadow: inset 0 10px 20px rgba(0,0,0,0.2), inset 0 -10px 20px rgba(0,0,0,0.2);
-        }
+        .bg-red { background-color: var(--rojo); color: var(--blanco); }
 
-        /* AJUSTE DEL TÍTULO */
+        /* TIPOGRAFÍA */
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(2.5rem, 10vw, 3.8rem); /* Ajuste dinámico para una sola línea */
-            color: var(--rojo-granada);
-            margin: 0 auto 20px;
-            white-space: nowrap;
-            width: 100%;
+            font-size: clamp(3rem, 10vw, 4rem); /* Tamaño fluido */
+            color: var(--rojo);
+            margin: 0;
         }
 
-        .bg-red h1 { color: var(--dorado); }
-
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin: 20px 0;
-            padding: 0 10px;
-        }
-
-        /* IMAGEN GRANDE AJUSTADA AL ANCHO */
-        .photo-container {
-            width: 100%;
-            max-width: 100%;
-            margin: 30px 0;
-            box-shadow: var(--sombra);
-            line-height: 0;
-        }
-
-        .photo-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+        .bg-red h1, .bg-red .section-title { color: var(--blanco); }
 
         .section-title {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            letter-spacing: 2px;
         }
 
-        /* CONTADOR ESTILIZADO */
-        .countdown {
+        /* FOTO DE BIENVENIDA (Arqueada como la imagen) */
+        .welcome-photo {
+            width: 80%;
+            max-width: 280px;
+            margin: 20px auto;
+            border-top-left-radius: 150px;
+            border-top-right-radius: 150px;
+            border: 4px solid var(--dorado);
+            overflow: hidden;
+        }
+
+        .welcome-photo img {
+            width: 100%;
+            display: block;
+        }
+
+        /* CONTADOR (Ajustado para que no se amontone) */
+        .countdown-grid {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 25px 0;
+            gap: 8px; /* Espacio reducido para que quepa en pantallas chicas */
+            flex-wrap: nowrap; /* Obliga a mantenerse en una línea */
         }
 
-        .count-unit {
+        .count-item {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            color: white;
-            padding: 15px 10px;
-            border-radius: 12px;
-            min-width: 70px;
             border: 1px solid var(--dorado);
+            border-radius: 10px;
+            flex: 1; /* Todos miden lo mismo */
+            max-width: 75px;
+            padding: 10px 5px;
+        }
+
+        .count-item span {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .count-item small {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+        }
+
+        .event-date-large {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--dorado);
+            margin-top: 20px;
+            display: block;
+        }
+
+        /* GALERÍA / IMÁGENES SECUNDARIAS */
+        .image-section img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 5px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .count-unit span { display: block; font-size: 1.8rem; font-weight: 700; font-family: 'Playfair Display'; }
-        .count-unit small { font-size: 0.7rem; text-transform: uppercase; }
+        /* CÓDIGO DE VESTIMENTA */
+        .dress-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            color: var(--texto-oscuro);
+            max-width: 320px;
+            margin: 0 auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
 
-        /* BOTONES CON PROFUNDIDAD */
+        /* BOTONES EN LISTA (BURBUJAS) */
         .btn-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            max-width: 85%;
-            margin: 0 auto;
+            gap: 12px;
+            align-items: center;
         }
 
         .btn-bubble {
-            padding: 18px 25px;
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .btn-white {
+            gap: 10px;
+            border: 1.5px solid var(--rojo);
             background: var(--blanco);
-            color: var(--rojo-granada);
-            border: 1.5px solid var(--rojo-granada);
+            color: var(--rojo);
+            transition: 0.3s;
         }
 
-        .btn-gold {
-            background: linear-gradient(145deg, #d4af37, #b8962e);
+        .btn-confirm {
+            background: var(--rojo);
             color: var(--blanco);
-            border: none;
+            border: 2px solid var(--dorado);
             font-size: 1.1rem;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-bubble:active {
-            transform: scale(0.95);
-        }
-
-        /* ICONOS DE VESTIMENTA */
-        .dress-code-icons {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            font-size: 3rem;
-            margin: 25px 0;
-            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
-        }
-
-        .event-date {
-            font-size: 1.6rem;
-            font-family: 'Playfair Display', serif;
             margin-top: 20px;
-            display: block;
-            color: var(--dorado);
         }
 
-        /* REPRODUCTOR OCULTO */
-        #music-container {
-            display: none;
+        /* FLORES Y DECORACIÓN */
+        .floral-top { width: 60px; position: absolute; top: 0; left: 0; }
+
+        @media (max-width: 360px) {
+            h1 { font-size: 2.5rem; }
+            .count-item span { font-size: 1.1rem; }
+            .count-item { padding: 5px 2px; }
         }
     </style>
 </head>
-<body onclick="playMusic()">
+<body>
+
+<div class="main-wrapper">
+    <section class="bg-white" style="position: relative;">
+        <h1>Mis 15 Quince</h1>
+        <div class="welcome-photo">
+            <img src="https://via.placeholder.com/400x600" alt="Frida Giselle">
+        </div>
+        <h2 style="font-family: 'Playfair Display', serif;">Frida Giselle Molina Lopez</h2>
+        <p style="font-style: italic; opacity: 0.8;">"Un día para recordar, una vida para soñar."</p>
+    </section>
+
+    <section class="bg-red">
+        <div class="section-title">Faltan:</div>
+        <div class="countdown-grid" id="timer">
+            <div class="count-item"><span id="days">00</span><small>Días</small></div>
+            <div class="count-item"><span id="hours">00</span><small>Horas</small></div>
+            <div class="count-item"><span id="mins">00</span><small>Min</small></div>
+            <div class="count-item"><span id="secs">00</span><small>Seg</small></div>
+        </div>
+        <span class="event-date-large">28 de Marzo de 2026</span>
+    </section>
+
+    <section class="bg-white image-section">
+        <img src="https://via.placeholder.com/350x450" alt="Sesión de fotos">
+    </section>
+
+    <section class="bg-red">
+        <div class="dress-card">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">👔👗</div>
+            <div class="section-title" style="color: var(--rojo); margin-bottom: 5px;">Código de vestimenta</div>
+            <p><strong>FORMAL</strong></p>
+            <p style="font-size: 0.85rem; border-top: 1px solid #eee; padding-top: 10px;">
+                Reservamos el color verde para la quinceañera.
+            </p>
+        </div>
+    </section>
 
     <section class="bg-white">
-        <h1 class="reveal">Mis XV Años</h1>
-        <div class="photo-container reveal">
-            <img src="1FRIDA.png" alt="Frida Giselle">
-        </div>
-        <div class="reveal">
-            <h2>Frida Giselle Molina Lopez</h2>
-            <p>"Un día para recordar, una vida para soñar."</p>
+        <div class="section-title">Dónde y Cuándo</div>
+        <div class="btn-list">
+            <a href="#" class="btn-bubble">📍 Iglesia [Nombre de la Iglesia]</a>
+            <a href="#" class="btn-bubble">🏠 Salón [Nombre del Salón]</a>
+            <a href="#" class="btn-bubble">🚗 Ver Estacionamiento Cercano</a>
         </div>
     </section>
 
     <section class="bg-red">
-        <div class="reveal">
-            <div class="section-title">Faltan:</div>
-            <div class="countdown" id="timer">
-                <div class="count-unit"><span id="days">00</span><small>Días</small></div>
-                <div class="count-unit"><span id="hours">00</span><small>Horas</small></div>
-                <div class="count-unit"><span id="mins">00</span><small>Min</small></div>
-                <div class="count-unit"><span id="secs">00</span><small>Seg</small></div>
-            </div>
-            <span class="event-date">28 de Marzo de 2026</span>
+        <div class="section-title">Asistencia</div>
+        <p>Para nosotros es muy importante tu confirmación</p>
+        <div class="btn-list">
+            <a href="TU_LINK_DE_VERCEL_O_FORMS" class="btn-bubble btn-confirm">
+                ✉️ Confirmar Asistencia Aquí
+            </a>
         </div>
+        <footer style="margin-top: 40px; font-size: 0.75rem; opacity: 0.8;">
+            Diseñado con ❤️ para mi familia<br>
+            esperando celebrar contigo este día inolvidable.
+        </footer>
     </section>
+</div>
 
-    <section class="bg-white">
-        <div class="reveal">
-            <div class="section-title">¿Dónde?</div>
-            <div class="btn-list">
-                <a href="URL_MAPS_IGLESIA" class="btn-bubble btn-white">📍 PARROQUIA</a>
-                <a href="URL_MAPS_RECEPCION" class="btn-bubble btn-white">🏠 RECEPCIÓN</a>
-                <a href="URL_MAPS_ESTACIONAMIENTO" class="btn-bubble btn-white">🚗 ESTACIONAMIENTO</a>
-            </div>
-        </div>
-    </section>
+<script>
+    // Fecha del gran día: 28 de Marzo de 2026
+    const target = new Date("March 28, 2026 00:00:00").getTime();
 
-    <section class="bg-red">
-        <div class="reveal">
-            <div class="section-title">Código de Vestimenta</div>
-            <div class="dress-code-icons">
-                <span>👔</span><span>👗</span>
-            </div>
-            <p style="font-size: 1.2rem; font-weight: 300;">Formal / Elegante</p>
-        </div>
-    </section>
+    function updateTimer() {
+        const now = new Date().getTime();
+        const diff = target - now;
 
-    <section class="bg-white">
-        <div class="reveal">
-            <div class="section-title">Asistencia</div>
-            <p style="margin-bottom: 30px;">Tu presencia es nuestro mejor regalo.</p>
-            <div class="btn-list">
-                <a href="TU_LINK_FORMULARIO" class="btn-bubble btn-gold">✉️ Confirmar Asistencia Aquí</a>
-            </div>
-            <footer style="margin-top: 80px; opacity: 0.4; font-size: 0.8rem;">
-                Diseñado con ❤️ para mi familia
-            </footer>
-        </div>
-    </section>
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-    <div id="music-container">
-        <audio id="myAudio" loop>
-            <source src="TU_CANCION.mp3" type="audio/mpeg">
-            Tu navegador no soporta el audio.
-        </audio>
-    </div>
+        document.getElementById("days").innerText = d;
+        document.getElementById("hours").innerText = h;
+        document.getElementById("mins").innerText = m;
+        document.getElementById("secs").innerText = s;
 
-    <script>
-        // FUNCIÓN MÚSICA (Activa al primer clic en cualquier parte)
-        let musicStarted = false;
-        function playMusic() {
-            if (!musicStarted) {
-                const audio = document.getElementById("myAudio");
-                audio.play();
-                musicStarted = true;
-            }
+        if (diff < 0) {
+            clearInterval(interval);
+            document.getElementById("timer").innerHTML = "<h3>¡ES HOY!</h3>";
         }
+    }
 
-        // ANIMACIÓN DE REVELACIÓN AL SCROLL
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
+    const interval = setInterval(updateTimer, 1000);
+    updateTimer();
+</script>
 
-        window.addEventListener("scroll", reveal);
-        // Llamada inicial para mostrar lo que ya está en pantalla
-        reveal();
-
-        // CONTADOR
-        const targetDate = new Date("March 28, 2026 00:00:00").getTime();
-        const updateTimer = setInterval(() => {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = d < 10 ? "0"+d : d;
-            document.getElementById("hours").innerText = h < 10 ? "0"+h : h;
-            document.getElementById("mins").innerText = m < 10 ? "0"+m : m;
-            document.getElementById("secs").innerText = s < 10 ? "0"+s : s;
-
-            if (diff < 0) {
-                clearInterval(updateTimer);
-                document.getElementById("timer").innerHTML = "<h3>¡ES HOY!</h3>";
-            }
-        }, 1000);
-    </script>
 </body>
 </html>
