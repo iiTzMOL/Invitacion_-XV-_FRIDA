@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis XV Años - Frida</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rojo: #8B0000;
+            --dorado: #D4AF37;
+            --negro: #0a0a0a;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            background-color: var(--negro);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* --- ESTILOS DEL SOBRE (PORTADA) --- */
+        #capa-sobre {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--negro);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: opacity 1s ease;
+        }
+
+        .sobre-visual {
+            width: 280px; height: 180px;
+            background: var(--rojo);
+            border: 2px solid var(--dorado);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(139, 0, 0, 0.7);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .sobre-visual:hover { transform: scale(1.05); }
+
+        .sobre-visual::after {
+            content: 'Frida';
+            font-family: 'Great Vibes', cursive;
+            color: var(--dorado);
+            font-size: 3.5rem;
+        }
+
+        .texto-abrir {
+            color: var(--dorado);
+            margin-top: 20px;
+            letter-spacing: 4px;
+            font-size: 0.7rem;
+            animation: parpadeo 2s infinite;
+        }
+
+        @keyframes parpadeo { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* --- ESTILOS DE LA INVITACIÓN --- */
+        #contenido-invitacion {
+            display: none; /* Se activa con JS */
+            max-width: 450px;
+            margin: auto;
+            padding: 20px;
+            animation: aparecer 2s ease;
+        }
+
+        @keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+
+        h1 { font-family: 'Great Vibes', cursive; font-size: 4.5rem; color: var(--dorado); margin: 30px 0 10px; }
+
+        /* Foto Animada Harry Potter */
+        .marco-foto {
+            width: 100%;
+            height: 450px;
+            border: 3px solid var(--dorado);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px var(--rojo);
+        }
+
+        .marco-foto img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            animation: movimientoLento 15s infinite alternate ease-in-out;
+        }
+
+        @keyframes movimientoLento {
+            from { transform: scale(1); }
+            to { transform: scale(1.15) translate(-2%, -2%); }
+        }
+
+        /* Botones */
+        .boton {
+            display: block;
+            background: var(--rojo);
+            color: white;
+            text-decoration: none;
+            padding: 18px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid var(--dorado);
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .boton-oro {
+            background: var(--dorado);
+            color: black;
+            border: none;
+            box-shadow: 0 0 15px var(--dorado);
+            margin-top: 35px;
+        }
+
+        .etiqueta { color: var(--dorado); letter-spacing: 3px; margin-top: 40px; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <div id="capa-sobre" onclick="abrirInvitacion()">
+        <div class="sobre-visual"></div>
+        <p class="texto-abrir">TOCA PARA ABRIR</p>
+    </div>
+
+    <div id="contenido-invitacion">
+        <h1>Mis XV Años</h1>
+        <p style="letter-spacing: 5px; color: var(--dorado);">FRIDA</p>
+
+        <div class="marco-foto">
+            <img src="foto_frida.jpg" alt="Frida">
+        </div>
+
+        <p class="etiqueta">UBICACIONES</p>
+        <a href="ESCRIBE_AQUÍ_LINK_IGLESIA" target="_blank" class="boton">📍 IGLESIA</a>
+        <a href="ESCRIBE_AQUÍ_LINK_RECEPCIÓN" target="_blank" class="boton">🏠 RECEPCIÓN</a>
+
+        <p class="etiqueta">CONFIRMACIÓN</p>
+        <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=2fRL-ZeAlEet9qVGbKKFY37OMOUmDslKj02NCLukAX1URVc1M0pWSFZKNTZHU0xLMDJENU1HUDRJQi4u" target="_blank" class="boton boton-oro">✉️ REGISTRAR MI FAMILIA</a>
+
+        <footer style="margin-top: 50px; opacity: 0.4; font-size: 0.7rem;">DRESS CODE: ROJO & DORADO</footer>
+    </div>
+
+    <audio id="musica" src="cancion.mp3" loop></audio>
+
+    <script>
+        function abrirInvitacion() {
+            // 1. Iniciar música
+            document.getElementById('musica').play();
+            
+            // 2. Desvanecer sobre
+            const sobre = document.getElementById('capa-sobre');
+            sobre.style.opacity = '0';
+            
+            // 3. Mostrar invitación
+            setTimeout(() => {
+                sobre.style.display = 'none';
+                document.getElementById('contenido-invitacion').style.display = 'block';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
