@@ -3,172 +3,422 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis XV Años - Frida</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <title>Mis XV Años - [Nombre de la Quinceañera]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --rojo: #8B0000;
-            --dorado: #D4AF37;
-            --negro: #0a0a0a;
+            --rojo-granada: #8B0000; /* Rojo Granate elegante */
+            --oscuro: #121212; /* Negro muy oscuro para el fondo */
+            --blanco: #f0f0f0; /* Blanco suave para el texto */
+            --gris-suave: #ababab; /* Gris para texto secundario */
         }
 
         body {
-            margin: 0; padding: 0;
-            background-color: var(--negro);
-            color: white;
+            margin: 0;
+            padding: 0;
             font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
+            background-color: var(--oscuro);
+            color: var(--blanco);
             text-align: center;
+            overflow-x: hidden;
+            line-height: 1.6;
+            background-image: url('https://i.imgur.com/your-elegant-background-texture.jpg'); /* Opcional: añade una textura sutil */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
         }
 
-        /* --- ESTILOS DEL SOBRE (PORTADA) --- */
-        #capa-sobre {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: var(--negro);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            transition: opacity 1s ease;
-        }
-
-        .sobre-visual {
-            width: 280px; height: 180px;
-            background: var(--rojo);
-            border: 2px solid var(--dorado);
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 30px rgba(139, 0, 0, 0.7);
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .sobre-visual:hover { transform: scale(1.05); }
-
-        .sobre-visual::after {
-            content: 'Frida';
-            font-family: 'Great Vibes', cursive;
-            color: var(--dorado);
-            font-size: 3.5rem;
-        }
-
-        .texto-abrir {
-            color: var(--dorado);
-            margin-top: 20px;
-            letter-spacing: 4px;
-            font-size: 0.7rem;
-            animation: parpadeo 2s infinite;
-        }
-
-        @keyframes parpadeo { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-        /* --- ESTILOS DE LA INVITACIÓN --- */
-        #contenido-invitacion {
-            display: none; /* Se activa con JS */
-            max-width: 450px;
-            margin: auto;
+        .container {
             padding: 20px;
-            animation: aparecer 2s ease;
+            max-width: 550px; /* Un poco más ancho para mejor visualización */
+            margin: auto;
+            background-color: rgba(18, 18, 18, 0.9); /* Fondo semi-transparente para el contenido */
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden; /* Para contener las animaciones internas */
         }
 
-        @keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+        .header-content {
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(var(--rojo-granada), 0.3);
+            margin-bottom: 20px;
+        }
 
-        h1 { font-family: 'Great Vibes', cursive; font-size: 4.5rem; color: var(--dorado); margin: 30px 0 10px; }
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4.5rem; /* Un poco más grande */
+            color: var(--rojo-granada);
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(var(--rojo-granada), 0.5);
+            animation: fadeInDown 1.5s ease-out;
+        }
 
-        /* Foto Animada Harry Potter */
-        .marco-foto {
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--blanco);
+            margin-top: 0;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .intro-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gris-suave);
+            margin-bottom: 30px;
+            animation: fadeIn 2.5s ease-out;
+        }
+
+        .video-container {
             width: 100%;
-            height: 450px;
-            border: 3px solid var(--dorado);
             border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
             margin-bottom: 30px;
-            box-shadow: 0 0 20px var(--rojo);
+            border: 2px solid var(--rojo-granada);
+            transform: scale(1);
+            transition: transform 0.3s ease-in-out;
+            animation: scaleIn 1.5s ease-out;
         }
 
-        .marco-foto img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            animation: movimientoLento 15s infinite alternate ease-in-out;
+        .video-container:hover {
+            transform: scale(1.02);
         }
 
-        @keyframes movimientoLento {
-            from { transform: scale(1); }
-            to { transform: scale(1.15) translate(-2%, -2%); }
-        }
-
-        /* Botones */
-        .boton {
-            display: block;
-            background: var(--rojo);
-            color: white;
+        .btn-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--rojo-granada);
+            color: var(--blanco);
             text-decoration: none;
-            padding: 18px;
+            padding: 15px 25px;
             margin: 15px 0;
-            border-radius: 8px;
-            border: 1px solid var(--dorado);
+            border-radius: 50px;
             font-weight: 600;
-            transition: 0.3s;
+            transition: all 0.3s ease-in-out;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(var(--rojo-granada), 0.4);
         }
 
-        .boton-oro {
-            background: var(--dorado);
-            color: black;
-            border: none;
-            box-shadow: 0 0 15px var(--dorado);
-            margin-top: 35px;
+        .btn-link:hover {
+            background-color: #A52A2A; /* Un tono ligeramente más oscuro al pasar el ratón */
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 6px 20px rgba(var(--rojo-granada), 0.6);
         }
 
-        .etiqueta { color: var(--dorado); letter-spacing: 3px; margin-top: 40px; font-size: 1.2rem; }
+        .btn-link:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 2px 10px rgba(var(--rojo-granada), 0.4);
+        }
+
+        .btn-rsvp {
+            background-color: transparent;
+            border: 2px solid var(--rojo-granada);
+            color: var(--rojo-granada);
+            margin-top: 30px;
+            padding: 18px 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .btn-rsvp:hover {
+            background-color: var(--rojo-granada);
+            color: var(--blanco);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: var(--rojo-granada);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 10px;
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--rojo-granada);
+            border-radius: 2px;
+        }
+
+        .info-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            opacity: 0.85;
+            color: var(--gris-suave);
+            animation: fadeIn 2.5s ease-out;
+        }
+
+        /* Contador */
+        .countdown-section {
+            background-color: rgba(var(--rojo-granada), 0.1);
+            padding: 30px 15px;
+            border-radius: 10px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(var(--rojo-granada), 0.3);
+            box-shadow: inset 0 0 15px rgba(var(--rojo-granada), 0.2);
+            animation: slideInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .countdown-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--rojo-granada);
+            margin-bottom: 20px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--oscuro);
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--rojo-granada);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            min-width: 80px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .countdown-item span {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--rojo-granada);
+            line-height: 1;
+        }
+
+        .countdown-item small {
+            font-size: 0.9rem;
+            color: var(--gris-suave);
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        footer {
+            margin-top: 60px;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            color: var(--gris-suave);
+            animation: fadeIn 3s ease-out;
+        }
+
+        /* Animaciones CSS */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Media Queries para responsividad */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .countdown-item {
+                min-width: 60px;
+                padding: 10px 15px;
+            }
+            .countdown-item span {
+                font-size: 2rem;
+            }
+            .countdown-item small {
+                font-size: 0.8rem;
+            }
+            .btn-link {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            .btn-rsvp {
+                padding: 15px 25px;
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div id="capa-sobre" onclick="abrirInvitacion()">
-        <div class="sobre-visual"></div>
-        <p class="texto-abrir">TOCA PARA ABRIR</p>
-    </div>
-
-    <div id="contenido-invitacion">
-        <h1>Mis XV Años</h1>
-        <p style="letter-spacing: 5px; color: var(--dorado);">FRIDA</p>
-
-        <div class="marco-foto">
-            <img src="foto_frida.jpg" alt="Frida">
+    <div class="container">
+        <div class="header-content">
+            <p class="intro-text">Con alegría, te invito a celebrar</p>
+            <h1>Mis XV Años</h1>
+            <h2>[Nombre de la Quinceañera]</h2>
+            <p class="intro-text">"El comienzo de una nueva historia, ¡quiero compartirla contigo!"</p>
         </div>
 
-        <p class="etiqueta">UBICACIONES</p>
-        <a href="ESCRIBE_AQUÍ_LINK_IGLESIA" target="_blank" class="boton">📍 IGLESIA</a>
-        <a href="ESCRIBE_AQUÍ_LINK_RECEPCIÓN" target="_blank" class="boton">🏠 RECEPCIÓN</a>
+        <div class="video-container">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="info-text">Un pequeño vistazo a la celebración que se aproxima...</p>
 
-        <p class="etiqueta">CONFIRMACIÓN</p>
-        <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=2fRL-ZeAlEet9qVGbKKFY37OMOUmDslKj02NCLukAX1URVc1M0pWSFZKNTZHU0xLMDJENU1HUDRJQi4u" target="_blank" class="boton boton-oro">✉️ REGISTRAR MI FAMILIA</a>
+        <p class="section-title">¡Gran Día!</p>
+        <div class="countdown-section">
+            <p class="countdown-title">Faltan:</p>
+            <div class="countdown-timer" id="countdown">
+                <div class="countdown-item">
+                    <span id="days">00</span>
+                    <small>Días</small>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours">00</span>
+                    <small>Horas</small>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes">00</span>
+                    <small>Minutos</small>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds">00</span>
+                    <small>Segundos</small>
+                </div>
+            </div>
+            <p class="info-text" style="margin-top: 20px;">[Día de la semana], [Día] de [Mes], [Año]</p>
+        </div>
 
-        <footer style="margin-top: 50px; opacity: 0.4; font-size: 0.7rem;">DRESS CODE: ROJO & DORADO</footer>
+        <p class="section-title">¿Dónde y Cuándo?</p>
+        <p class="info-text">Tu presencia es el mejor regalo. Aquí te esperamos:</p>
+        
+        <a href="https://maps.app.goo.gl/TU_LINK_IGLESIA" target="_blank" class="btn-link">
+            📍 Iglesia [Nombre de la Iglesia]
+        </a>
+        <p class="info-text">Hora: [Hora de la ceremonia religiosa]</p>
+
+        <a href="https://maps.app.goo.gl/TU_LINK_RECEPCION" target="_blank" class="btn-link">
+            🏠 Recepción [Nombre del Salón/Lugar]
+        </a>
+        <p class="info-text">Hora: [Hora de la recepción]</p>
+        
+        <a href="https://maps.app.goo.gl/TU_LINK_ESTACIONAMIENTO" target="_blank" class="btn-link">
+            🚗 Ver Estacionamiento Cercano
+        </a>
+
+        <p class="section-title">Regalos (Opcional)</p>
+        <p class="info-text">Tu compañía es lo más importante. Si deseas obsequiar algo, puedes consultar nuestra mesa de regalos.</p>
+        <a href="https://www.ejemplo.com/mesaderegalos" target="_blank" class="btn-link">
+            🎁 Ver Mesa de Regalos
+        </a>
+
+        <p class="section-title">Asistencia</p>
+        <p class="info-text">Por favor, ayúdanos a planear mejor confirmando tu asistencia antes del [Fecha Límite]:</p>
+        
+        <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=2fRL-ZeAlEet9qVGbKKFY37OMOUmDslKj02NCLukAX1URVc1M0pWSFZKNTZHU0xLMDJENU1HUDRJQi4u" target="_blank" class="btn-link btn-rsvp">
+            ✉️ Confirmar Asistencia Aquí
+        </a>
+
+        <footer style="margin-top: 60px; font-size: 0.85rem; opacity: 0.7; color: var(--gris-suave);">
+            Diseñado con ❤️ y esperando celebrar contigo este día inolvidable.
+        </footer>
     </div>
 
-    <audio id="musica" src="cancion.mp3" loop></audio>
-
     <script>
-        function abrirInvitacion() {
-            // 1. Iniciar música
-            document.getElementById('musica').play();
-            
-            // 2. Desvanecer sobre
-            const sobre = document.getElementById('capa-sobre');
-            sobre.style.opacity = '0';
-            
-            // 3. Mostrar invitación
-            setTimeout(() => {
-                sobre.style.display = 'none';
-                document.getElementById('contenido-invitacion').style.display = 'block';
-            }, 1000);
-        }
+        // Configura la fecha del evento (Año, Mes-1, Día, Hora, Minuto, Segundo)
+        const eventDate = new Date("February 22, 2027 19:00:00").getTime(); // Ejemplo: 22 de Febrero de 2027 a las 7 PM
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "<p style='color: var(--rojo-granada); font-size: 1.8rem; font-family: Playfair Display, serif;'>¡El gran día ha llegado!</p>";
+            }
+        }, 1000);
+
+        // Observador de Intersección para animaciones de secciones
+        document.addEventListener('DOMContentLoaded', () => {
+            const sectionTitles = document.querySelectorAll('.section-title');
+            const options = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.3 // Cuando el 30% del elemento es visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target); // Dejar de observar una vez animado
+                    }
+                });
+            }, options);
+
+            sectionTitles.forEach(title => {
+                title.style.animationPlayState = 'paused'; // Pausar hasta que sea visible
+                observer.observe(title);
+            });
+
+            // Animación para el contador
+            const countdownSection = document.querySelector('.countdown-section');
+            countdownSection.style.animationPlayState = 'paused';
+            observer.observe(countdownSection);
+        });
+
     </script>
 </body>
 </html>
