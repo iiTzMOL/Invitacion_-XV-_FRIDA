@@ -4,121 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis XV Años</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --granate-fondo: #3d0a0a;
-            --dorado-borde: #d4af37;
-            --blanco-letras: #fdfaf5; /* El blanco crema de la imagen */
-            --glass: rgba(255, 255, 255, 0.05);
+            --rojo-granada: #8b1010;
+            --dorado: #d4af37;
+            --blanco: #ffffff;
+            --texto-oscuro: #333333;
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background: radial-gradient(circle, #5e1111 0%, #2a0505 100%);
-            background-attachment: fixed;
-            color: var(--blanco-letras);
-            display: flex;
-            justify-content: center;
+            background-color: #f4f4f4;
+            color: var(--texto-oscuro);
         }
 
-        .container {
-            max-width: 420px;
-            width: 90%;
-            margin: 30px auto;
+        /* SECCIONES */
+        section {
+            padding: 50px 20px;
             text-align: center;
-            background: linear-gradient(145deg, #440c0c, #2a0505);
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            border-radius: 40px;
-            padding: 40px 20px;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
         }
 
+        .bg-white { background-color: var(--blanco); }
+        .bg-red { background-color: var(--rojo-granada); color: var(--blanco); }
+
+        /* TIPOGRAFÍA */
         h1 {
             font-family: 'Great Vibes', cursive;
             font-size: 4rem;
-            color: var(--dorado-borde);
+            color: var(--rojo-granada);
             margin: 0;
         }
 
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin: 10px 0;
-        }
-
-        .phrase {
-            font-size: 0.8rem;
-            font-style: italic;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-
-        /* Video Box */
-        .video-wrapper {
-            border: 2px solid var(--dorado-borde);
-            border-radius: 20px;
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
+        .bg-red h1 { color: var(--dorado); }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--dorado-borde);
-            margin: 40px 0 20px;
+            letter-spacing: 2px;
         }
 
-        /* Contador */
+        /* IMÁGENES Y VIDEO */
+        .photo-frame {
+            width: 250px;
+            height: 300px;
+            margin: 20px auto;
+            border: 10px solid var(--blanco);
+            outline: 2px solid var(--dorado);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* CONTADOR */
         .countdown {
             display: flex;
-            justify-content: space-around;
-            margin-bottom: 10px;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
         }
 
-        .count-box {
-            border: 1.5px solid var(--dorado-borde);
-            border-radius: 15px;
-            width: 75px;
-            padding: 10px 0;
-            background: var(--glass);
+        .count-unit {
+            background: var(--rojo-granada);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            min-width: 60px;
+            border: 1px solid var(--dorado);
         }
 
-        .count-box span {
-            display: block;
-            font-size: 1.8rem;
-            font-family: 'Playfair Display', serif;
-            font-weight: bold;
-        }
+        .count-unit span { display: block; font-size: 1.5rem; font-weight: 600; }
+        .count-unit small { font-size: 0.7rem; }
 
-        .event-date-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: var(--dorado-borde);
-            margin-bottom: 30px;
-            display: block;
-        }
-
-        /* Lista de Ubicaciones en Burbujas */
-        .location-list {
+        /* BOTONES (ESTILO BURBUJA) */
+        .btn-list {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-bottom: 30px;
+            max-width: 300px;
+            margin: 0 auto;
         }
 
         .btn-bubble {
-            background: var(--glass);
-            border: 1.5px solid var(--dorado-borde);
-            padding: 15px;
-            border-radius: 30px;
-            color: var(--blanco-letras);
+            padding: 15px 25px;
+            border-radius: 50px;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -126,101 +102,109 @@
             transition: 0.3s;
         }
 
-        .btn-bubble:hover {
-            background: rgba(212, 175, 55, 0.2);
+        .btn-white {
+            background: var(--blanco);
+            color: var(--rojo-granada);
+            border: 1px solid var(--rojo-granada);
         }
 
-        /* Botón Asistencia */
-        .btn-rsvp {
+        .btn-gold {
+            background: var(--dorado);
+            color: var(--rojo-granada);
+            border: none;
+            font-size: 1.1rem;
+        }
+
+        /* ICONOS DE VESTIMENTA */
+        .dress-code-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 2.5rem;
+            margin: 20px 0;
+        }
+
+        .event-date {
+            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            margin-top: 15px;
             display: block;
-            border: 2px solid var(--dorado-borde);
-            background: transparent;
-            color: var(--blanco-letras);
-            padding: 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin-top: 20px;
-        }
-
-        .btn-rsvp:hover {
-            background: var(--dorado-borde);
-            color: var(--granate-fondo);
-        }
-
-        footer {
-            margin-top: 40px;
-            font-size: 0.7rem;
-            opacity: 0.7;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <section class="bg-white">
         <h1>Mis XV Años</h1>
+        <div class="photo-frame">
+            <img src="https://via.placeholder.com/250x300" alt="Quinceañera">
+        </div>
         <h2>[Nombre de la Quinceañera]</h2>
-        <p class="phrase">"Porque este sueño que hoy comienza no estaría completo sin tu presencia"</p>
+        <p>"Un día para recordar, una vida para soñar."</p>
+    </section>
 
-        <div class="video-wrapper">
-            <iframe width="100%" height="230" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+    <section class="bg-red">
+        <div class="section-title">Faltan:</div>
+        <div class="countdown" id="timer">
+            <div class="count-unit"><span id="days">00</span><small>Días</small></div>
+            <div class="count-unit"><span id="hours">00</span><small>Horas</small></div>
+            <div class="count-unit"><span id="mins">00</span><small>Min</small></div>
+            <div class="count-unit"><span id="secs">00</span><small>Seg</small></div>
         </div>
+        <span class="event-date">28 de Marzo de 2026</span>
+    </section>
 
-        <div class="section-title">¡Gran Día!</div>
-        
-        <div class="countdown">
-            <div class="count-box"><span id="days">00</span><small>Días</small></div>
-            <div class="count-box"><span id="hours">00</span><small>Horas</small></div>
-            <div class="count-box"><span id="minutes">00</span><small>Min</small></div>
-            <div class="count-box"><span id="seconds">00</span><small>Seg</small></div>
-        </div>
-        <span class="event-date-text">28 de marzo de 2026</span>
-
+    <section class="bg-white">
         <div class="section-title">Dónde y Cuándo</div>
-        <div class="location-list">
-            <a href="LINK_MAPS_IGLESIA" class="btn-bubble">📍 Iglesia [Nombre de la Iglesia]</a>
-            <a href="LINK_MAPS_SALON" class="btn-bubble">🏠 Recepción [Nombre del Salón]</a>
-            <a href="LINK_MAPS_ESTACIONAMIENTO" class="btn-bubble">🚗 Ver Estacionamiento Cercano</a>
+        <div class="btn-list">
+            <a href="#" class="btn-bubble btn-white">📍 Iglesia [Nombre]</a>
+            <a href="#" class="btn-bubble btn-white">🏠 Recepción [Nombre]</a>
+            <a href="#" class="btn-bubble btn-white">🚗 Estacionamiento Cercano</a>
         </div>
+    </section>
 
+    <section class="bg-red">
+        <div class="section-title">Código de Vestimenta</div>
+        <div class="dress-code-icons">
+            <span>👔</span><span>👗</span>
+        </div>
+        <p>Formal / Elegante</p>
+    </section>
+
+    <section class="bg-white">
         <div class="section-title">Asistencia</div>
-        <a href="LINK_FORMULARIO" class="btn-rsvp">
-            ✉️ Confirmar Asistencia Aquí
-        </a>
-
-        <footer>
-            Diseñado con ❤️ para mi familia<br>
-            2026 • Todos los derechos reservados
+        <p>Tu presencia es nuestro mejor regalo.</p>
+        <div class="btn-list">
+            <a href="TU_LINK_AQUI" class="btn-bubble btn-gold">✉️ Confirmar Asistencia Aquí</a>
+        </div>
+        <footer style="margin-top: 50px; opacity: 0.5; font-size: 0.8rem;">
+            Diseñado con ❤️ para mi familia
         </footer>
-    </div>
+    </section>
 
     <script>
-        // Fecha configurada para el 28 de marzo de 2026
+        // Fecha del evento: 28 de Marzo de 2026
         const targetDate = new Date("March 28, 2026 00:00:00").getTime();
 
-        function updateTimer() {
+        const updateTimer = setInterval(() => {
             const now = new Date().getTime();
-            const distance = targetDate - now;
+            const diff = targetDate - now;
 
-            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((distance % (1000 * 60)) / 1000);
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerText = d < 10 ? "0"+d : d;
-            document.getElementById("hours").innerText = h < 10 ? "0"+h : h;
-            document.getElementById("minutes").innerText = m < 10 ? "0"+m : m;
-            document.getElementById("seconds").innerText = s < 10 ? "0"+s : s;
+            document.getElementById("days").innerText = d;
+            document.getElementById("hours").innerText = h;
+            document.getElementById("mins").innerText = m;
+            document.getElementById("secs").innerText = s;
 
-            if (distance < 0) {
-                clearInterval(interval);
-                document.querySelector(".countdown").innerHTML = "<h3>¡ES HOY!</h3>";
+            if (diff < 0) {
+                clearInterval(updateTimer);
+                document.getElementById("timer").innerHTML = "<h3>¡ES HOY!</h3>";
             }
-        }
-
-        const interval = setInterval(updateTimer, 1000);
-        updateTimer();
+        }, 1000);
     </script>
 </body>
 </html>
