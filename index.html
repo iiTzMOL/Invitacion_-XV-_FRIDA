@@ -11,8 +11,9 @@
             --dorado: #d4af37;
             --blanco: #ffffff;
             --texto-oscuro: #222;
+            --negro-puro: #000000;
             --sombra-fuerte: 0 15px 35px rgba(0,0,0,0.2);
-            --sombra-tarjeta: 0 10px 25px rgba(0,0,0,0.12); /* Sombra más notable para las tarjetas */
+            --sombra-tarjeta: 0 10px 25px rgba(0,0,0,0.12);
         }
 
         * { box-sizing: border-box; }
@@ -148,17 +149,17 @@
             display: block;
         }
 
-        /* --- SECCIÓN DE UBICACIONES CON MÁS SOMBRA --- */
+        /* --- SECCIÓN DE UBICACIONES AJUSTADA --- */
         .location-container {
             display: flex;
             flex-direction: column;
-            gap: 25px; /* Un poco más de espacio entre tarjetas */
+            gap: 25px;
             padding: 10px;
         }
 
         .location-card {
             background: #fff;
-            border: 1px solid rgba(212, 175, 55, 0.2); /* Borde dorado muy sutil */
+            border: 1px solid #eee;
             border-radius: 20px;
             padding: 25px 20px;
             text-decoration: none;
@@ -167,7 +168,7 @@
             flex-direction: column;
             align-items: center;
             transition: all 0.3s ease;
-            box-shadow: var(--sombra-tarjeta); /* Sombra mejorada */
+            box-shadow: var(--sombra-tarjeta);
         }
 
         .location-card:active {
@@ -184,8 +185,8 @@
         }
 
         .location-card .tag {
-            font-size: 0.85rem;
-            color: var(--dorado);
+            font-size: 0.9rem;
+            color: var(--negro-puro); /* Cambiado a negro */
             font-weight: 600;
             font-style: italic;
             text-transform: none;
@@ -196,9 +197,9 @@
         .location-card .btn-text {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--texto-oscuro);
-            border: 1.5px solid var(--dorado);
+            font-weight: 800;
+            color: var(--negro-puro); /* Cambiado a negro */
+            border: 1.5px solid var(--negro-puro); /* Borde negro */
             padding: 8px 25px;
             border-radius: 50px;
             letter-spacing: 1px;
