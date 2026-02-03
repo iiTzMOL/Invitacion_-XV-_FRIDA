@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mis XV - Frida Giselle</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;800&family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --rojo: #8b1010;
-            --rojo-claro: #a31414;
             --dorado: #d4af37;
             --blanco: #ffffff;
             --texto-oscuro: #222;
-            --negro-puro: #000000;
             --sombra-fuerte: 0 20px 40px rgba(0,0,0,0.3);
             --sombra-floating: 0 15px 35px rgba(0,0,0,0.25);
         }
@@ -47,9 +45,8 @@
         }
 
         section {
-            padding: 70px 20px;
+            padding: 60px 20px;
             text-align: center;
-            width: 100%;
         }
 
         .bg-white { background-color: var(--blanco); }
@@ -63,19 +60,20 @@
             font-family: 'Great Vibes', cursive;
             font-size: clamp(4.5rem, 15vw, 5.5rem);
             color: var(--rojo);
-            margin: 10px 0 30px;
+            margin: 10px 0 20px;
             filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
             line-height: 1;
         }
 
-        .family-invitation {
+        /* TIPOGRAFÍA UNIFICADA PARA TEXTO FAMILIAR Y FRASE FINAL */
+        .family-invitation, .phrase-style {
             font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
             font-style: italic;
             color: var(--texto-oscuro);
-            margin: 25px auto 10px;
             max-width: 85%;
-            line-height: 1.5;
+            margin: 0 auto;
+            line-height: 1.4;
         }
 
         .section-title {
@@ -89,27 +87,7 @@
         h2 {
             font-size: 2.2rem;
             font-weight: 700;
-            margin: 10px 0 20px;
-        }
-
-        .phrase-box {
-            margin: 35px 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .phrase-1 {
-            display: block;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--rojo);
-            margin-bottom: 5px;
-        }
-        .phrase-2 {
-            display: block;
-            font-size: 1.1rem;
-            font-weight: 400;
-            font-style: italic;
-            color: var(--texto-oscuro);
+            margin: 15px 0 10px; /* Reducido para que la frase esté cerca */
         }
 
         .welcome-photo {
@@ -177,7 +155,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: var(--sombra-floating);
         }
 
@@ -186,12 +163,10 @@
             font-weight: 900;
             margin-bottom: 5px;
             color: var(--rojo);
-            letter-spacing: 1px;
         }
 
         .location-card .tag {
             font-size: 0.95rem;
-            color: var(--negro-puro);
             font-weight: 600;
             font-style: italic;
             margin-bottom: 20px;
@@ -201,7 +176,6 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 0.8rem;
             font-weight: 800;
-            color: var(--negro-puro);
             border: 2px solid var(--negro-puro);
             padding: 10px 30px;
             border-radius: 50px;
@@ -214,26 +188,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             color: var(--blanco);
             box-shadow: inset 0 15px 30px rgba(0,0,0,0.3);
         }
 
         .asistencia-final-roja .line {
-            width: 60px;
-            height: 3px;
-            background-color: var(--dorado);
-            margin: 20px 0;
-        }
-
-        .asistencia-desc-white {
-            font-size: 1.25rem;
-            font-weight: 400;
-            max-width: 320px;
-            margin-bottom: 45px;
-            line-height: 1.6;
-            color: rgba(255,255,255,0.9);
-            font-style: italic;
+            width: 60px; height: 3px; background-color: var(--dorado); margin: 20px 0;
         }
 
         .btn-confirm-final-white {
@@ -246,38 +206,23 @@
             border-radius: 60px;
             font-weight: 800;
             font-size: 1.1rem;
-            letter-spacing: 2px;
             border: 2px solid var(--dorado);
             box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
             text-transform: uppercase;
         }
 
         .music-control {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 1000;
-            background: var(--dorado);
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--sombra-fuerte);
-            cursor: pointer;
-            border: 3px solid white;
+            bottom: 25px; right: 25px; z-index: 1000;
+            background: var(--dorado); color: white;
+            width: 55px; height: 55px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: var(--sombra-fuerte); border: 3px solid white;
         }
 
         footer {
-            background-color: #111;
-            color: rgba(255,255,255,0.4);
-            padding: 40px 20px;
-            font-size: 0.8rem;
-            font-weight: 400;
-            letter-spacing: 2px;
+            background-color: #111; color: rgba(255,255,255,0.4);
+            padding: 40px 20px; font-size: 0.8rem; letter-spacing: 2px;
         }
     </style>
 </head>
@@ -302,10 +247,10 @@
         
         <h2>Frida Giselle</h2>
         
-        <div class="phrase-box">
-            <span class="phrase-1">Un día para recordar</span>
-            <span class="phrase-2">una vida para soñar</span>
-        </div>
+        <p class="phrase-style">
+            Un día para recordar,<br>
+            una vida para soñar
+        </p>
     </section>
 
     <section class="bg-red reveal">
@@ -355,7 +300,9 @@
     <section class="asistencia-final-roja reveal">
         <div class="section-title" style="color: var(--blanco); margin-bottom: 10px;">Asistencia</div>
         <div class="line"></div>
-        <p class="asistencia-desc-white">Para nosotros es muy importante tu confirmación en este día tan especial.</p>
+        <p style="font-size: 1.25rem; font-style: italic; color: rgba(255,255,255,0.9); margin-bottom: 45px;">
+            Para nosotros es muy importante tu confirmación en este día tan especial.
+        </p>
         <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=2fRL-ZeAlEet9qVGbKKFY37OMOUmDslKj02NCLukAX1URVc1M0pWSFZKNTZHU0xLMDJENU1HUDRJQi4u" class="btn-confirm-final-white">
             CONFIRMAR AQUÍ
         </a>
@@ -373,36 +320,19 @@
         for (var i = 0; i < reveals.length; i++) {
             var windowHeight = window.innerHeight;
             var elementTop = reveals[i].getBoundingClientRect().top;
-            var elementVisible = 100;
-            if (elementTop < windowHeight - elementVisible) {
-                reveals[i].classList.add("active");
-            }
+            if (elementTop < windowHeight - 100) { reveals[i].classList.add("active"); }
         }
     }
-    window.addEventListener("scroll", reveal);
-    reveal();
+    window.addEventListener("scroll", reveal); reveal();
 
     const music = document.getElementById('backgroundMusic');
     const icon = document.getElementById('musicIcon');
     let hasStarted = false;
-
-    function iniciarMusica() {
-        if (!hasStarted) {
-            music.play().catch(e => console.log("Interacción requerida"));
-            hasStarted = true;
-            icon.innerText = '⏸';
-        }
-    }
-
+    function iniciarMusica() { if (!hasStarted) { music.play(); hasStarted = true; icon.innerText = '⏸'; } }
     function toggleMusic(event) {
         event.stopPropagation();
-        if (music.paused) {
-            music.play();
-            icon.innerText = '⏸';
-        } else {
-            music.pause();
-            icon.innerText = '▶️';
-        }
+        if (music.paused) { music.play(); icon.innerText = '⏸'; }
+        else { music.pause(); icon.innerText = '▶️'; }
     }
 
     const target = new Date("March 28, 2026 00:00:00").getTime();
@@ -418,8 +348,7 @@
         document.getElementById("mins").innerText = m < 10 ? '0'+m : m;
         document.getElementById("secs").innerText = s < 10 ? '0'+s : s;
     }
-    setInterval(updateTimer, 1000);
-    updateTimer();
+    setInterval(updateTimer, 1000); updateTimer();
 </script>
 
 </body>
