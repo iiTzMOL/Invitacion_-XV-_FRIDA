@@ -14,7 +14,7 @@
         }
 
         * {
-            box-sizing: border-box; /* Evita que los elementos sobresalgan por el padding */
+            box-sizing: border-box;
         }
 
         body {
@@ -23,12 +23,11 @@
             font-family: 'Montserrat', sans-serif;
             background-color: #f9f9f9;
             color: var(--texto-oscuro);
-            overflow-x: hidden; /* Prohibido el scroll horizontal */
+            overflow-x: hidden;
         }
 
-        /* Contenedor Global para centrar y limitar ancho */
         .main-wrapper {
-            max-width: 500px; /* Ancho ideal para celulares */
+            max-width: 500px;
             margin: 0 auto;
             background: var(--blanco);
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -43,10 +42,9 @@
         .bg-white { background-color: var(--blanco); }
         .bg-red { background-color: var(--rojo); color: var(--blanco); }
 
-        /* TIPOGRAFÍA */
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(3rem, 10vw, 4rem); /* Tamaño fluido */
+            font-size: clamp(3rem, 10vw, 4rem);
             color: var(--rojo);
             margin: 0;
         }
@@ -61,7 +59,6 @@
             letter-spacing: 2px;
         }
 
-        /* FOTO DE BIENVENIDA (Arqueada como la imagen) */
         .welcome-photo {
             width: 80%;
             max-width: 280px;
@@ -77,19 +74,18 @@
             display: block;
         }
 
-        /* CONTADOR (Ajustado para que no se amontone) */
         .countdown-grid {
             display: flex;
             justify-content: center;
-            gap: 8px; /* Espacio reducido para que quepa en pantallas chicas */
-            flex-wrap: nowrap; /* Obliga a mantenerse en una línea */
+            gap: 8px;
+            flex-wrap: nowrap;
         }
 
         .count-item {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid var(--dorado);
             border-radius: 10px;
-            flex: 1; /* Todos miden lo mismo */
+            flex: 1;
             max-width: 75px;
             padding: 10px 5px;
         }
@@ -114,7 +110,6 @@
             display: block;
         }
 
-        /* GALERÍA / IMÁGENES SECUNDARIAS */
         .image-section img {
             width: 100%;
             max-width: 350px;
@@ -122,7 +117,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* CÓDIGO DE VESTIMENTA */
         .dress-card {
             background: #fff;
             padding: 20px;
@@ -133,7 +127,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* BOTONES EN LISTA (BURBUJAS) */
         .btn-list {
             display: flex;
             flex-direction: column;
@@ -167,8 +160,25 @@
             margin-top: 20px;
         }
 
-        /* FLORES Y DECORACIÓN */
-        .floral-top { width: 60px; position: absolute; top: 0; left: 0; }
+        /* --- CÓDIGO NUEVO PARA LA MÚSICA --- */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--dorado);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            border: 2px solid white;
+        }
+        /* ---------------------------------- */
 
         @media (max-width: 360px) {
             h1 { font-size: 2.5rem; }
@@ -177,9 +187,14 @@
         }
     </style>
 </head>
-<body>
+<body onclick="iniciarMusica()"> <div class="main-wrapper">
+    <div class="music-control" id="musicBtn" onclick="toggleMusic(event)">
+        <span id="musicIcon">🎵</span>
+    </div>
+    <audio id="backgroundMusic" loop>
+        <source src="TU_CANCION.mp3" type="audio/mpeg">
+    </audio>
 
-<div class="main-wrapper">
     <section class="bg-white" style="position: relative;">
         <h1>Mis 15 Años</h1>
         <div class="welcome-photo">
@@ -194,7 +209,7 @@
         <div class="countdown-grid" id="timer">
             <div class="count-item"><span id="days">00</span><small>Días</small></div>
             <div class="count-item"><span id="hours">00</span><small>Horas</small></div>
-            <div class="count-item"><span id="mins">00</span><small>Min</small></div>
+            <div class="count-unit" style="display:none;"><span id="mins">00</span><small>Min</small></div> <div class="count-item"><span id="mins">00</span><small>Min</small></div>
             <div class="count-item"><span id="secs">00</span><small>Seg</small></div>
         </div>
         <span class="event-date-large">28 de Marzo de 2026</span>
@@ -236,7 +251,31 @@
 </div>
 
 <script>
-    // Fecha del gran día: 28 de Marzo de 2026
+    // LÓGICA DE MÚSICA
+    const music = document.getElementById('backgroundMusic');
+    const icon = document.getElementById('musicIcon');
+    let hasStarted = false;
+
+    function iniciarMusica() {
+        if (!hasStarted) {
+            music.play();
+            hasStarted = true;
+            icon.innerText = '⏸';
+        }
+    }
+
+    function toggleMusic(event) {
+        event.stopPropagation(); // Evita que el clic del body interfiera
+        if (music.paused) {
+            music.play();
+            icon.innerText = '⏸';
+        } else {
+            music.pause();
+            icon.innerText = '▶️';
+        }
+    }
+
+    // LÓGICA DEL CONTADOR
     const target = new Date("March 28, 2026 00:00:00").getTime();
 
     function updateTimer() {
@@ -248,10 +287,10 @@
         const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-        document.getElementById("days").innerText = d;
-        document.getElementById("hours").innerText = h;
-        document.getElementById("mins").innerText = m;
-        document.getElementById("secs").innerText = s;
+        document.getElementById("days").innerText = d < 10 ? '0'+d : d;
+        document.getElementById("hours").innerText = h < 10 ? '0'+h : h;
+        document.getElementById("mins").innerText = m < 10 ? '0'+m : m;
+        document.getElementById("secs").innerText = s < 10 ? '0'+s : s;
 
         if (diff < 0) {
             clearInterval(interval);
@@ -264,4 +303,5 @@
 </script>
 
 </body>
-</html>
+</html> 
+
