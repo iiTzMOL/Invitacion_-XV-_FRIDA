@@ -11,6 +11,7 @@
             --dorado: #d4af37;
             --blanco: #ffffff;
             --texto-oscuro: #222;
+            --negro-puro: #000000;
             --sombra-fuerte: 0 20px 40px rgba(0,0,0,0.3);
             --sombra-floating: 0 15px 35px rgba(0,0,0,0.25);
         }
@@ -65,8 +66,7 @@
             line-height: 1;
         }
 
-        /* TIPOGRAFÍA UNIFICADA PARA TEXTO FAMILIAR Y FRASE FINAL */
-        .family-invitation, .phrase-style {
+        .family-invitation, .phrase-style, .tag-style {
             font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
             font-style: italic;
@@ -87,7 +87,7 @@
         h2 {
             font-size: 2.2rem;
             font-weight: 700;
-            margin: 15px 0 10px; /* Reducido para que la frase esté cerca */
+            margin: 15px 0 10px;
         }
 
         .welcome-photo {
@@ -163,12 +163,11 @@
             font-weight: 900;
             margin-bottom: 5px;
             color: var(--rojo);
+            letter-spacing: 1px;
         }
 
-        .location-card .tag {
-            font-size: 0.95rem;
-            font-weight: 600;
-            font-style: italic;
+        .location-card .tag-style {
+            font-size: 1rem; /* Ajustado para que sea legible en las tarjetas */
             margin-bottom: 20px;
         }
 
@@ -176,6 +175,7 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 0.8rem;
             font-weight: 800;
+            color: var(--negro-puro);
             border: 2px solid var(--negro-puro);
             padding: 10px 30px;
             border-radius: 50px;
@@ -238,19 +238,12 @@
 
     <section class="bg-white reveal">
         <h1>Mis 15 Años</h1>
-        
         <div class="welcome-photo">
             <img src="FRIDA1.png" alt="Frida Giselle">
         </div>
-
         <p class="family-invitation">La familia Molina López tiene el honor de invitarlos a celebrar con nosotros los XV años de:</p>
-        
         <h2>Frida Giselle</h2>
-        
-        <p class="phrase-style">
-            Un día para recordar,<br>
-            una vida para soñar
-        </p>
+        <p class="phrase-style">Un día para recordar,<br>una vida para soñar</p>
     </section>
 
     <section class="bg-red reveal">
@@ -281,17 +274,17 @@
         <div class="location-container">
             <a href="https://maps.app.goo.gl/9FWpt6fwedLPLa7r5" class="location-card">
                 <span class="place-name">PARROQUIA</span>
-                <span class="tag">Misa de acción de gracias</span>
+                <span class="tag-style">Misa de acción de gracias</span>
                 <span class="btn-text">VER UBICACIÓN</span>
             </a>
             <a href="https://maps.app.goo.gl/THw3pNQuanrTE1tr6" class="location-card">
                 <span class="place-name">SALÓN</span>
-                <span class="tag">Celebración familiar</span>
+                <span class="tag-style">Celebración familiar</span>
                 <span class="btn-text">VER UBICACIÓN</span>
             </a>
             <a href="https://maps.app.goo.gl/WdrfHXjcxymAuTLa6" class="location-card">
                 <span class="place-name">ESTACIONAMIENTO</span>
-                <span class="tag">Seguridad para tu auto</span>
+                <span class="tag-style">Seguridad para tu auto</span>
                 <span class="btn-text">VER UBICACIÓN</span>
             </a>
         </div>
