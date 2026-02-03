@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mis XV - Frida Giselle</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --rojo: #8b1010;
             --dorado: #d4af37;
             --blanco: #ffffff;
             --texto-oscuro: #222;
-            --sombra-suave: 0 10px 30px rgba(0,0,0,0.1);
             --sombra-fuerte: 0 15px 35px rgba(0,0,0,0.2);
         }
 
@@ -20,14 +19,13 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Playfair Display', serif; /* Cambiado a Playfair para elegancia global */
             background-color: #f0f0f0;
             color: var(--texto-oscuro);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.4;
         }
 
-        /* --- ANIMACIONES AL SCROLL --- */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -58,20 +56,17 @@
             box-shadow: inset 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        /* --- TIPOGRAFÍA MEJORADA --- */
+        /* --- TIPOGRAFÍA --- */
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(3.5rem, 12vw, 4.5rem);
+            font-size: clamp(4.5rem, 15vw, 5.5rem); /* Aumentado el tamaño */
             color: var(--rojo);
             margin: 0;
             filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
-            line-height: 1.2;
+            line-height: 1;
         }
 
-        .bg-red h1, .bg-red .section-title { color: var(--blanco); }
-
         .section-title {
-            font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
             font-weight: 900;
             margin-bottom: 25px;
@@ -80,18 +75,33 @@
         }
 
         h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
             margin: 20px 0;
+            color: var(--texto-oscuro);
         }
 
-        p {
+        /* Estilo para la frase en dos renglones */
+        .phrase-box {
+            margin: 30px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .phrase-1 {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--rojo);
+        }
+        .phrase-2 {
+            display: block;
             font-size: 1.1rem;
             font-weight: 400;
+            font-style: italic;
+            color: var(--texto-oscuro);
         }
 
-        /* --- FOTOS CON SOMBRAS Y PROFUNDIDAD --- */
+        /* --- FOTOS --- */
         .welcome-photo {
             width: 85%;
             max-width: 300px;
@@ -102,7 +112,6 @@
             overflow: hidden;
             box-shadow: var(--sombra-fuerte);
         }
-
         .welcome-photo img { width: 100%; display: block; }
 
         .image-section img {
@@ -120,7 +129,6 @@
             gap: 12px;
             margin: 20px 0;
         }
-
         .count-item {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(5px);
@@ -129,36 +137,31 @@
             flex: 1;
             max-width: 80px;
             padding: 15px 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-
         .count-item span {
             display: block;
             font-size: 1.6rem;
             font-weight: 700;
-            font-family: 'Playfair Display', serif;
         }
 
         .event-date-large {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: var(--dorado);
             margin-top: 25px;
             display: block;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        /* --- BOTONES Y TARJETAS --- */
-        .dress-card {
+        /* --- SECCIÓN DE ASISTENCIA REDISEÑADA --- */
+        .asistencia-card {
             background: #fff;
-            padding: 30px 20px;
-            border-radius: 20px;
-            color: var(--texto-oscuro);
-            max-width: 340px;
-            margin: 0 auto;
+            padding: 40px 20px;
+            border-radius: 30px;
             box-shadow: var(--sombra-fuerte);
-            border: 1px solid #eee;
+            border: 2px solid var(--dorado);
+            position: relative;
+            margin-top: -30px; /* Superposición elegante */
+            z-index: 10;
         }
 
         .btn-list {
@@ -180,25 +183,27 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            border: none;
             background: var(--blanco);
             color: var(--rojo);
             box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(139, 16, 16, 0.2);
+            border: 1.5px solid var(--rojo);
         }
 
-        .btn-bubble:active { transform: scale(0.96); }
-
         .btn-confirm {
-            background: linear-gradient(135deg, var(--rojo), #b11b1b);
+            background: var(--rojo);
             color: var(--blanco);
             border: 2px solid var(--dorado);
             font-size: 1.2rem;
-            box-shadow: 0 10px 25px rgba(139, 16, 16, 0.3);
+            box-shadow: 0 10px 25px rgba(139, 16, 16, 0.4);
+            animation: pulse 2s infinite;
         }
 
-        /* CONTROL MÚSICA */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
         .music-control {
             position: fixed;
             bottom: 25px;
@@ -215,13 +220,13 @@
             box-shadow: var(--sombra-fuerte);
             cursor: pointer;
             border: 3px solid white;
-            font-size: 1.4rem;
         }
 
-        @media (max-width: 380px) {
-            h1 { font-size: 3.2rem; }
-            .count-item span { font-size: 1.3rem; }
-            .section-title { font-size: 1.4rem; }
+        footer {
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0.8;
         }
     </style>
 </head>
@@ -241,7 +246,10 @@
             <img src="1FRIDA.png" alt="Frida Giselle">
         </div>
         <h2>Frida Giselle</h2>
-        <p style="font-style: italic; opacity: 0.9;">"Un día para recordar, una vida para soñar."</p>
+        <div class="phrase-box">
+            <span class="phrase-1">Un día para recordar</span>
+            <span class="phrase-2">una vida para soñar</span>
+        </div>
     </section>
 
     <section class="bg-red reveal">
@@ -259,10 +267,10 @@
         <img src="2FRIDA.png" alt="Sesión de fotos">
     </section>
 
-    <section class="bg-red reveal">
-        <div class="dress-card">
-            <div class="section-title" style="color: var(--rojo); margin-bottom: 10px;">Código de vestimenta</div>
-            <p style="letter-spacing: 2px;"><strong>FORMAL</strong></p>
+    <section class="bg-red reveal" style="padding-bottom: 80px;">
+        <div style="background: white; color: var(--rojo); padding: 30px; border-radius: 20px; box-shadow: var(--sombra-fuerte); max-width: 320px; margin: 0 auto;">
+            <div class="section-title" style="margin-bottom: 10px;">Código de vestimenta</div>
+            <p style="letter-spacing: 5px; font-weight: 900;">FORMAL</p>
         </div>
     </section>
 
@@ -275,15 +283,17 @@
         </div>
     </section>
 
-    <section class="bg-red reveal">
-        <div class="section-title">Asistencia</div>
-        <p>Para nosotros es muy importante tu confirmación</p>
-        <div class="btn-list">
-            <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=2fRL-ZeAlEet9qVGbKKFY37OMOUmDslKj02NCLukAX1URVc1M0pWSFZKNTZHU0xLMDJENU1HUDRJQi4u" class="btn-bubble btn-confirm">
-                Confirmar asistencia aquí
-            </a>
+    <section class="bg-red reveal" style="overflow: visible;">
+        <div class="asistencia-card">
+            <div class="section-title" style="color: var(--rojo);">Asistencia</div>
+            <p style="color: var(--texto-oscuro); font-weight: 600;">Para nosotros es muy importante tu confirmación</p>
+            <div class="btn-list">
+                <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=2fRL-ZeAlEet9qVGbKKFY37OMOUmDslKj02NCLukAX1URVc1M0pWSFZKNTZHU0xLMDJENU1HUDRJQi4u" class="btn-bubble btn-confirm">
+                    CONFIRMAR AQUÍ
+                </a>
+            </div>
         </div>
-        <footer style="margin-top: 50px; font-size: 0.85rem; opacity: 0.9; font-weight: 600;">
+        <footer style="color: white;">
             Diseñado con amor para mi familia<br>
             esperando celebrar contigo este día inolvidable.
         </footer>
@@ -291,7 +301,6 @@
 </div>
 
 <script>
-    // LÓGICA DE ANIMACIONES AL SCROLL
     function reveal() {
         var reveals = document.querySelectorAll(".reveal");
         for (var i = 0; i < reveals.length; i++) {
@@ -304,16 +313,15 @@
         }
     }
     window.addEventListener("scroll", reveal);
-    reveal(); // Para cargar las primeras
+    reveal();
 
-    // LÓGICA DE MÚSICA
     const music = document.getElementById('backgroundMusic');
     const icon = document.getElementById('musicIcon');
     let hasStarted = false;
 
     function iniciarMusica() {
         if (!hasStarted) {
-            music.play().catch(e => console.log("Esperando interacción"));
+            music.play().catch(e => console.log("Interacción requerida"));
             hasStarted = true;
             icon.innerText = '⏸';
         }
@@ -330,7 +338,6 @@
         }
     }
 
-    // LÓGICA DEL CONTADOR
     const target = new Date("March 28, 2026 00:00:00").getTime();
     function updateTimer() {
         const now = new Date().getTime();
@@ -350,4 +357,3 @@
 
 </body>
 </html>
-
