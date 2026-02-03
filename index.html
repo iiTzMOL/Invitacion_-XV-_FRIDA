@@ -19,7 +19,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Playfair Display', serif; /* Cambiado a Playfair para elegancia global */
+            font-family: 'Playfair Display', serif;
             background-color: #f0f0f0;
             color: var(--texto-oscuro);
             overflow-x: hidden;
@@ -56,10 +56,9 @@
             box-shadow: inset 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        /* --- TIPOGRAFÍA --- */
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(4.5rem, 15vw, 5.5rem); /* Aumentado el tamaño */
+            font-size: clamp(4.5rem, 15vw, 5.5rem);
             color: var(--rojo);
             margin: 0;
             filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
@@ -78,10 +77,8 @@
             font-size: 2.2rem;
             font-weight: 700;
             margin: 20px 0;
-            color: var(--texto-oscuro);
         }
 
-        /* Estilo para la frase en dos renglones */
         .phrase-box {
             margin: 30px 0;
             text-transform: uppercase;
@@ -101,7 +98,6 @@
             color: var(--texto-oscuro);
         }
 
-        /* --- FOTOS --- */
         .welcome-photo {
             width: 85%;
             max-width: 300px;
@@ -122,7 +118,6 @@
             border: 3px solid var(--blanco);
         }
 
-        /* --- CONTADOR --- */
         .countdown-grid {
             display: flex;
             justify-content: center;
@@ -152,7 +147,60 @@
             display: block;
         }
 
-        /* --- SECCIÓN DE ASISTENCIA REDISEÑADA --- */
+        /* --- NUEVA SECCIÓN DE UBICACIONES (TARJETAS) --- */
+        .location-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .location-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 20px;
+            text-decoration: none;
+            color: var(--texto-oscuro);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .location-card:active {
+            transform: scale(0.98);
+            background: #fdfdfd;
+        }
+
+        .location-card .tag {
+            font-size: 0.7rem;
+            color: var(--dorado);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .location-card .place-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--rojo);
+        }
+
+        .location-card .btn-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--texto-oscuro);
+            border: 1px solid var(--dorado);
+            padding: 8px 20px;
+            border-radius: 50px;
+        }
+
+        /* --- ASISTENCIA --- */
         .asistencia-card {
             background: #fff;
             padding: 40px 20px;
@@ -160,7 +208,7 @@
             box-shadow: var(--sombra-fuerte);
             border: 2px solid var(--dorado);
             position: relative;
-            margin-top: -30px; /* Superposición elegante */
+            margin-top: -30px;
             z-index: 10;
         }
 
@@ -171,31 +219,22 @@
             align-items: center;
         }
 
-        .btn-bubble {
+        .btn-confirm {
             width: 100%;
             max-width: 320px;
             padding: 18px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: var(--blanco);
-            color: var(--rojo);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            border: 1.5px solid var(--rojo);
-        }
-
-        .btn-confirm {
             background: var(--rojo);
             color: var(--blanco);
             border: 2px solid var(--dorado);
             font-size: 1.2rem;
             box-shadow: 0 10px 25px rgba(139, 16, 16, 0.4);
             animation: pulse 2s infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         @keyframes pulse {
@@ -276,10 +315,25 @@
 
     <section class="bg-white reveal">
         <div class="section-title">¿Dónde?</div>
-        <div class="btn-list">
-            <a href="https://maps.app.goo.gl/9FWpt6fwedLPLa7r5" class="btn-bubble">📍 PARROQUIA</a>
-            <a href="https://maps.app.goo.gl/THw3pNQuanrTE1tr6" class="btn-bubble">🏠 SALÓN</a>
-            <a href="https://maps.app.goo.gl/WdrfHXjcxymAuTLa6" class="btn-bubble">🚗 ESTACIONAMIENTO</a>
+        
+        <div class="location-container">
+            <a href="URL_GOOGLE_MAPS_1" class="location-card">
+                <span class="tag">Misa de acción de gracias</span>
+                <span class="place-name">PARROQUIA</span>
+                <span class="btn-text">VER UBICACIÓN</span>
+            </a>
+
+            <a href="URL_GOOGLE_MAPS_2" class="location-card">
+                <span class="tag">Celebración Familiar</span>
+                <span class="place-name">SALÓN</span>
+                <span class="btn-text">VER UBICACIÓN</span>
+            </a>
+
+            <a href="URL_GOOGLE_MAPS_3" class="location-card">
+                <span class="tag">Seguridad para tu auto</span>
+                <span class="place-name">ESTACIONAMIENTO</span>
+                <span class="btn-text">VER UBICACIÓN</span>
+            </a>
         </div>
     </section>
 
@@ -288,7 +342,7 @@
             <div class="section-title" style="color: var(--rojo);">Asistencia</div>
             <p style="color: var(--texto-oscuro); font-weight: 600;">Para nosotros es muy importante tu confirmación</p>
             <div class="btn-list">
-                <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=2fRL-ZeAlEet9qVGbKKFY37OMOUmDslKj02NCLukAX1URVc1M0pWSFZKNTZHU0xLMDJENU1HUDRJQi4u" class="btn-bubble btn-confirm">
+                <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=2fRL-ZeAlEet9qVGbKKFY37OMOUmDslKj02NCLukAX1URVc1M0pWSFZKNTZHU0xLMDJENU1HUDRJQi4u" class="btn-confirm">
                     CONFIRMAR AQUÍ
                 </a>
             </div>
