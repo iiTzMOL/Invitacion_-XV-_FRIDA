@@ -46,7 +46,7 @@
         }
 
         section {
-            padding: 60px 20px;
+            padding: 70px 20px;
             text-align: center;
             width: 100%;
         }
@@ -72,7 +72,7 @@
             font-weight: 900;
             margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
         }
 
         h2 {
@@ -82,7 +82,7 @@
         }
 
         .phrase-box {
-            margin: 30px 0;
+            margin: 35px 0;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -91,6 +91,7 @@
             font-size: 1.4rem;
             font-weight: 700;
             color: var(--rojo);
+            margin-bottom: 5px;
         }
         .phrase-2 {
             display: block;
@@ -106,7 +107,7 @@
             margin: 30px auto;
             border-top-left-radius: 150px;
             border-top-right-radius: 150px;
-            border: 4px solid var(--dorado);
+            border: 5px solid var(--dorado);
             overflow: hidden;
             box-shadow: var(--sombra-fuerte);
         }
@@ -158,7 +159,6 @@
 
         .location-card {
             background: #ffffff;
-            border: 1px solid rgba(0,0,0,0.05);
             border-radius: 25px;
             padding: 30px 20px;
             text-decoration: none;
@@ -168,13 +168,6 @@
             align-items: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: var(--sombra-floating);
-            position: relative;
-            z-index: 5;
-        }
-
-        .location-card:active {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 45px rgba(0,0,0,0.3);
         }
 
         .location-card .place-name {
@@ -202,67 +195,54 @@
             padding: 10px 30px;
             border-radius: 50px;
             letter-spacing: 1.5px;
-            background: transparent;
         }
 
-        /* --- SECCIÓN DE ASISTENCIA REDISEÑADA (ESTILO SOBRE PREMIUM) --- */
-        .asistencia-premium {
-            background: linear-gradient(145deg, #ffffff, #f9f9f9);
-            padding: 50px 25px;
-            border-radius: 40px 40px 0 0;
-            box-shadow: 0 -15px 40px rgba(0,0,0,0.2);
-            border-top: 4px solid var(--dorado);
-            margin-top: -30px;
-            position: relative;
-            z-index: 10;
+        /* --- SECCIÓN DE ASISTENCIA PROFESIONAL Y CENTRADA --- */
+        .asistencia-final {
+            background-color: var(--blanco);
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .asistencia-premium::before {
-            content: '✉️';
-            font-size: 2.5rem;
-            display: block;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+        .asistencia-final .line {
+            width: 50px;
+            height: 2px;
+            background-color: var(--dorado);
+            margin: 20px 0;
         }
 
-        .asistencia-text {
-            font-family: 'Playfair Display', serif;
+        .asistencia-desc {
             font-size: 1.2rem;
             font-weight: 600;
+            max-width: 300px;
+            margin-bottom: 40px;
+            line-height: 1.6;
             color: var(--texto-oscuro);
-            margin-bottom: 30px;
-            padding: 0 10px;
         }
 
-        .btn-confirm-new {
-            display: inline-block;
+        .btn-confirm-final {
             width: 100%;
             max-width: 320px;
-            background: var(--rojo);
-            color: #fff;
+            background-color: var(--rojo);
+            color: var(--blanco);
             text-decoration: none;
-            padding: 20px;
-            border-radius: 15px; /* Menos redondeado para verse más formal */
+            padding: 22px;
+            border-radius: 60px;
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             letter-spacing: 2px;
             border: 2px solid var(--dorado);
-            box-shadow: 0 10px 25px rgba(139, 16, 16, 0.4);
+            box-shadow: 0 10px 30px rgba(139, 16, 16, 0.3);
             transition: all 0.3s ease;
-            animation: softPulse 2s infinite;
+            text-transform: uppercase;
         }
 
-        @keyframes softPulse {
-            0% { transform: scale(1); box-shadow: 0 10px 25px rgba(139, 16, 16, 0.4); }
-            50% { transform: scale(1.02); box-shadow: 0 15px 35px rgba(139, 16, 16, 0.5); }
-            100% { transform: scale(1); box-shadow: 0 10px 25px rgba(139, 16, 16, 0.4); }
-        }
-
-        .asistencia-footer {
-            margin-top: 40px;
-            font-size: 0.85rem;
-            font-style: italic;
-            color: #777;
+        .btn-confirm-final:active {
+            transform: scale(0.96);
+            box-shadow: 0 5px 15px rgba(139, 16, 16, 0.2);
         }
 
         .music-control {
@@ -284,11 +264,12 @@
         }
 
         footer {
-            background-color: var(--rojo);
+            background-color: #1a1a1a;
+            color: #777;
             padding: 40px 20px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--blanco);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -329,29 +310,27 @@
         <img src="2FRIDA.png" alt="Sesión de fotos">
     </section>
 
-    <section class="bg-red reveal" style="padding-bottom: 100px;">
-        <div style="background: white; color: var(--rojo); padding: 35px; border-radius: 25px; box-shadow: var(--sombra-fuerte); max-width: 320px; margin: 0 auto;">
-            <div class="section-title" style="margin-bottom: 10px;">Código de vestimenta</div>
-            <p style="letter-spacing: 5px; font-weight: 900;">FORMAL</p>
+    <section class="bg-red reveal">
+        <div style="background: white; color: var(--rojo); padding: 40px 30px; border-radius: 25px; box-shadow: var(--sombra-fuerte); max-width: 320px; margin: 0 auto;">
+            <div class="section-title" style="margin-bottom: 10px; color: var(--rojo);">Código de vestimenta</div>
+            <div style="width: 30px; height: 2px; background: var(--dorado); margin: 15px auto;"></div>
+            <p style="letter-spacing: 5px; font-weight: 900; margin-top: 15px;">FORMAL</p>
         </div>
     </section>
 
     <section class="bg-white reveal">
         <div class="section-title">¿Dónde?</div>
-        
         <div class="location-container">
             <a href="https://maps.app.goo.gl/9FWpt6fwedLPLa7r5" class="location-card">
                 <span class="place-name">PARROQUIA</span>
-                <span class="tag">Misa: 5:30 pm</span>
+                <span class="tag">Misa de acción de gracias</span>
                 <span class="btn-text">VER UBICACIÓN</span>
             </a>
-
             <a href="https://maps.app.goo.gl/THw3pNQuanrTE1tr6" class="location-card">
                 <span class="place-name">SALÓN</span>
                 <span class="tag">Celebración familiar</span>
                 <span class="btn-text">VER UBICACIÓN</span>
             </a>
-
             <a href="https://maps.app.goo.gl/WdrfHXjcxymAuTLa6" class="location-card">
                 <span class="place-name">ESTACIONAMIENTO</span>
                 <span class="tag">Seguridad para tu auto</span>
@@ -360,20 +339,19 @@
         </div>
     </section>
 
-    <div class="asistencia-premium reveal">
-        <div class="section-title" style="color: var(--rojo); font-size: 2rem;">Asistencia</div>
-        <p class="asistencia-text">Sería un honor contar con tu presencia en esta noche tan especial.</p>
+    <section class="asistencia-final reveal">
+        <div class="section-title" style="color: var(--rojo); margin-bottom: 10px;">Asistencia</div>
+        <div class="line"></div>
+        <p class="asistencia-desc">Para nosotros es muy importante tu confirmación en este día tan especial.</p>
         
-        <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=2fRL-ZeAlEet9qVGbKKFY37OMOUmDslKj02NCLukAX1URVc1M0pWSFZKNTZHU0xLMDJENU1HUDRJQi4u" class="btn-confirm-new">
-            CONFIRMAR ASISTENCIA
+        <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=2fRL-ZeAlEet9qVGbKKFY37OMOUmDslKj02NCLukAX1URVc1M0pWSFZKNTZHU0xLMDJENU1HUDRJQi4u" class="btn-confirm-final">
+            CONFIRMAR AQUÍ
         </a>
-        
-        <p class="asistencia-footer">Por favor confirmar antes del 15 de marzo</p>
-    </div>
+    </section>
 
     <footer>
-        Diseñado con amor para mi familia<br>
-        esperando celebrar contigo este día inolvidable.
+        DISEÑADO CON AMOR PARA MI FAMILIA<br>
+        2026 • FRIDA GISELLE
     </footer>
 </div>
 
