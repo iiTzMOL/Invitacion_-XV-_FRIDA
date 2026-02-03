@@ -4,190 +4,230 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mis XV - Frida Giselle</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --rojo: #8b1010;
             --dorado: #d4af37;
             --blanco: #ffffff;
-            --texto-oscuro: #333;
+            --texto-oscuro: #222;
+            --sombra-suave: 0 10px 30px rgba(0,0,0,0.1);
+            --sombra-fuerte: 0 15px 35px rgba(0,0,0,0.2);
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: #f9f9f9;
+            background-color: #f0f0f0;
             color: var(--texto-oscuro);
             overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- ANIMACIONES AL SCROLL --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .main-wrapper {
             max-width: 500px;
             margin: 0 auto;
             background: var(--blanco);
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 0 50px rgba(0,0,0,0.15);
         }
 
         section {
-            padding: 40px 15px;
+            padding: 60px 20px;
             text-align: center;
             width: 100%;
         }
 
         .bg-white { background-color: var(--blanco); }
-        .bg-red { background-color: var(--rojo); color: var(--blanco); }
+        .bg-red { 
+            background-color: var(--rojo); 
+            color: var(--blanco);
+            box-shadow: inset 0 10px 20px rgba(0,0,0,0.2);
+        }
 
+        /* --- TIPOGRAFÍA MEJORADA --- */
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(3rem, 10vw, 4rem);
+            font-size: clamp(3.5rem, 12vw, 4.5rem);
             color: var(--rojo);
             margin: 0;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
+            line-height: 1.2;
         }
 
         .bg-red h1, .bg-red .section-title { color: var(--blanco); }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        p {
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        /* --- FOTOS CON SOMBRAS Y PROFUNDIDAD --- */
         .welcome-photo {
-            width: 80%;
-            max-width: 280px;
-            margin: 20px auto;
+            width: 85%;
+            max-width: 300px;
+            margin: 30px auto;
             border-top-left-radius: 150px;
             border-top-right-radius: 150px;
-            border: 4px solid var(--dorado);
+            border: 5px solid var(--dorado);
             overflow: hidden;
+            box-shadow: var(--sombra-fuerte);
         }
 
-        .welcome-photo img {
+        .welcome-photo img { width: 100%; display: block; }
+
+        .image-section img {
             width: 100%;
-            display: block;
+            max-width: 280px;
+            border-radius: 15px;
+            box-shadow: var(--sombra-fuerte);
+            border: 3px solid var(--blanco);
         }
 
+        /* --- CONTADOR --- */
         .countdown-grid {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            flex-wrap: nowrap;
+            gap: 12px;
+            margin: 20px 0;
         }
 
         .count-item {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
             border: 1px solid var(--dorado);
-            border-radius: 10px;
+            border-radius: 12px;
             flex: 1;
-            max-width: 75px;
-            padding: 10px 5px;
+            max-width: 80px;
+            padding: 15px 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .count-item span {
             display: block;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: 700;
             font-family: 'Playfair Display', serif;
         }
 
-        .count-item small {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-        }
-
         .event-date-large {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
+            font-weight: 700;
             color: var(--dorado);
-            margin-top: 20px;
+            margin-top: 25px;
             display: block;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .image-section img {
-            width: 100%;
-            max-width: 250px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
+        /* --- BOTONES Y TARJETAS --- */
         .dress-card {
             background: #fff;
-            padding: 20px;
-            border-radius: 15px;
+            padding: 30px 20px;
+            border-radius: 20px;
             color: var(--texto-oscuro);
-            max-width: 320px;
+            max-width: 340px;
             margin: 0 auto;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: var(--sombra-fuerte);
+            border: 1px solid #eee;
         }
 
         .btn-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 18px;
             align-items: center;
         }
 
         .btn-bubble {
             width: 100%;
-            max-width: 300px;
-            padding: 15px;
+            max-width: 320px;
+            padding: 18px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            border: 1.5px solid var(--rojo);
+            gap: 12px;
+            border: none;
             background: var(--blanco);
             color: var(--rojo);
-            transition: 0.3s;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 16, 16, 0.2);
         }
+
+        .btn-bubble:active { transform: scale(0.96); }
 
         .btn-confirm {
-            background: var(--rojo);
+            background: linear-gradient(135deg, var(--rojo), #b11b1b);
             color: var(--blanco);
             border: 2px solid var(--dorado);
-            font-size: 1.1rem;
-            margin-top: 20px;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 25px rgba(139, 16, 16, 0.3);
         }
 
-        /* --- CÓDIGO NUEVO PARA LA MÚSICA --- */
+        /* CONTROL MÚSICA */
         .music-control {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 25px;
+            right: 25px;
             z-index: 1000;
             background: var(--dorado);
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: var(--sombra-fuerte);
             cursor: pointer;
-            border: 2px solid white;
+            border: 3px solid white;
+            font-size: 1.4rem;
         }
-        /* ---------------------------------- */
 
-        @media (max-width: 360px) {
-            h1 { font-size: 2.5rem; }
-            .count-item span { font-size: 1.1rem; }
-            .count-item { padding: 5px 2px; }
+        @media (max-width: 380px) {
+            h1 { font-size: 3.2rem; }
+            .count-item span { font-size: 1.3rem; }
+            .section-title { font-size: 1.4rem; }
         }
     </style>
 </head>
-<body onclick="iniciarMusica()"> <div class="main-wrapper">
+<body onclick="iniciarMusica()">
+
+<div class="main-wrapper">
     <div class="music-control" id="musicBtn" onclick="toggleMusic(event)">
         <span id="musicIcon">🎵</span>
     </div>
@@ -195,55 +235,55 @@
         <source src="CANCION.mp3" type="audio/mpeg">
     </audio>
 
-    <section class="bg-white" style="position: relative;">
+    <section class="bg-white reveal">
         <h1>Mis 15 Años</h1>
         <div class="welcome-photo">
             <img src="1FRIDA.png" alt="Frida Giselle">
         </div>
-        <h2 style="font-family: 'Playfair Display', serif;">Frida Giselle</h2>
-        <p style="font-style: italic; opacity: 0.8;">"Un día para recordar, una vida para soñar."</p>
+        <h2>Frida Giselle</h2>
+        <p style="font-style: italic; opacity: 0.9;">"Un día para recordar, una vida para soñar."</p>
     </section>
 
-    <section class="bg-red">
+    <section class="bg-red reveal">
         <div class="section-title">Faltan:</div>
         <div class="countdown-grid" id="timer">
             <div class="count-item"><span id="days">00</span><small>Días</small></div>
             <div class="count-item"><span id="hours">00</span><small>Horas</small></div>
-            <div class="count-unit" style="display:none;"><span id="mins">00</span><small>Min</small></div> <div class="count-item"><span id="mins">00</span><small>Min</small></div>
+            <div class="count-item"><span id="mins">00</span><small>Min</small></div>
             <div class="count-item"><span id="secs">00</span><small>Seg</small></div>
         </div>
         <span class="event-date-large">28 de Marzo de 2026</span>
     </section>
 
-    <section class="bg-white image-section">
+    <section class="bg-white image-section reveal">
         <img src="2FRIDA.png" alt="Sesión de fotos">
     </section>
 
-    <section class="bg-red">
+    <section class="bg-red reveal">
         <div class="dress-card">
-            <div class="section-title" style="color: var(--rojo); margin-bottom: 5px;">Código de vestimenta</div>
-            <p><strong>FORMAL</strong></p>
+            <div class="section-title" style="color: var(--rojo); margin-bottom: 10px;">Código de vestimenta</div>
+            <p style="letter-spacing: 2px;"><strong>FORMAL</strong></p>
         </div>
     </section>
 
-    <section class="bg-white">
+    <section class="bg-white reveal">
         <div class="section-title">¿Dónde?</div>
         <div class="btn-list">
-            <a href="https://maps.app.goo.gl/9FWpt6fwedLPLa7r5" class="btn-bubble">PARROQUIA</a>
-            <a href="https://maps.app.goo.gl/THw3pNQuanrTE1tr6" class="btn-bubble">SALON</a>
-            <a href="https://maps.app.goo.gl/WdrfHXjcxymAuTLa6" class="btn-bubble">ESTACIONAMIENTO</a>
+            <a href="https://maps.app.goo.gl/9FWpt6fwedLPLa7r5" class="btn-bubble">📍 PARROQUIA</a>
+            <a href="https://maps.app.goo.gl/THw3pNQuanrTE1tr6" class="btn-bubble">🏠 SALÓN</a>
+            <a href="https://maps.app.goo.gl/WdrfHXjcxymAuTLa6" class="btn-bubble">🚗 ESTACIONAMIENTO</a>
         </div>
     </section>
 
-    <section class="bg-red">
+    <section class="bg-red reveal">
         <div class="section-title">Asistencia</div>
         <p>Para nosotros es muy importante tu confirmación</p>
         <div class="btn-list">
             <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=2fRL-ZeAlEet9qVGbKKFY37OMOUmDslKj02NCLukAX1URVc1M0pWSFZKNTZHU0xLMDJENU1HUDRJQi4u" class="btn-bubble btn-confirm">
-                Confirmar asistencia aqui
+                Confirmar asistencia aquí
             </a>
         </div>
-        <footer style="margin-top: 40px; font-size: 0.75rem; opacity: 0.8;">
+        <footer style="margin-top: 50px; font-size: 0.85rem; opacity: 0.9; font-weight: 600;">
             Diseñado con amor para mi familia<br>
             esperando celebrar contigo este día inolvidable.
         </footer>
@@ -251,6 +291,21 @@
 </div>
 
 <script>
+    // LÓGICA DE ANIMACIONES AL SCROLL
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 100;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal(); // Para cargar las primeras
+
     // LÓGICA DE MÚSICA
     const music = document.getElementById('backgroundMusic');
     const icon = document.getElementById('musicIcon');
@@ -258,14 +313,14 @@
 
     function iniciarMusica() {
         if (!hasStarted) {
-            music.play();
+            music.play().catch(e => console.log("Esperando interacción"));
             hasStarted = true;
             icon.innerText = '⏸';
         }
     }
 
     function toggleMusic(event) {
-        event.stopPropagation(); // Evita que el clic del body interfiera
+        event.stopPropagation();
         if (music.paused) {
             music.play();
             icon.innerText = '⏸';
@@ -277,31 +332,22 @@
 
     // LÓGICA DEL CONTADOR
     const target = new Date("March 28, 2026 00:00:00").getTime();
-
     function updateTimer() {
         const now = new Date().getTime();
         const diff = target - now;
-
         const d = Math.floor(diff / (1000 * 60 * 60 * 24));
         const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const s = Math.floor((diff % (1000 * 60)) / 1000);
-
         document.getElementById("days").innerText = d < 10 ? '0'+d : d;
         document.getElementById("hours").innerText = h < 10 ? '0'+h : h;
         document.getElementById("mins").innerText = m < 10 ? '0'+m : m;
         document.getElementById("secs").innerText = s < 10 ? '0'+s : s;
-
-        if (diff < 0) {
-            clearInterval(interval);
-            document.getElementById("timer").innerHTML = "<h3>¡ES HOY!</h3>";
-        }
     }
-
-    const interval = setInterval(updateTimer, 1000);
+    setInterval(updateTimer, 1000);
     updateTimer();
 </script>
 
 </body>
-</html> 
+</html>
 
